@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jiayu" />
+        <meta name="copyright" content="Jiayu" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="VBA, VBA, " />
+
+<meta property="og:title" content="Generate a series of letters from Excel "/>
+<meta property="og:url" content="/VBAseriesLetter.html" />
+<meta property="og:description" content="Creating Blog" />
+<meta property="og:site_name" content="LittleLife" />
+<meta property="og:article:author" content="Jiayu" />
+<meta property="og:article:published_time" content="2016-05-13T21:07:00+08:00" />
+<meta property="" content="2016-05-13T21:07:00+08:00" />
+<meta name="twitter:title" content="Generate a series of letters from Excel ">
+<meta name="twitter:description" content="Creating Blog">
+
+        <title>Generate a series of letters from Excel  · LittleLife
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>LittleLife</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="">Home</a></li>
+                            <li ><a href="/categories.html">Categories</a></li>
+                            <li ><a href="/tags.html">Tags</a></li>
+                            <li ><a href="/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="/VBAseriesLetter.html"> Generate a series of letters from Excel  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h2>Overview</h2>
+<p>This project aims to generate a large amount of letters based on a tamplate .docx document and insert specific text and images according to the information stored in Excel.</p>
+<h2>Documents in hand</h2>
+<p>Firstly, we need to prepare a desired template document in <code>.docx</code> format. For example:  </p>
+<div class="highlight"><pre><span></span><span class="n">Date</span><span class="o">:</span> <span class="n">The</span> <span class="n">date</span> 
+<span class="n">Dear</span><span class="o">:</span> <span class="n">Recipient</span><span class="err">’</span><span class="n">s</span> <span class="n">name</span>
+
+<span class="n">Content</span> <span class="n">of</span> <span class="n">letter</span>
+
+<span class="n">We</span> <span class="n">want</span> <span class="n">to</span> <span class="n">insert</span> <span class="n">some</span> <span class="n">specific</span> <span class="n">text</span> <span class="n">according</span> <span class="n">to</span> <span class="n">recipient</span><span class="err">’</span><span class="n">s</span> <span class="n">property</span> <span class="n">here</span><span class="o">:</span> 
+
+<span class="n">We</span> <span class="n">want</span> <span class="n">to</span> <span class="n">insert</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">image</span> <span class="n">according</span> <span class="n">to</span> <span class="n">recipient</span><span class="err">’</span><span class="n">s</span> <span class="n">property</span> <span class="n">into</span> <span class="n">the</span> <span class="n">next</span> <span class="n">line</span>
+<span class="n">Image</span>
+
+
+<span class="n">Best</span> <span class="n">regards</span><span class="o">,</span>
+<span class="n">XXX</span>
+</pre></div>
+
+
+<p>Then we also need an Excel worksheet containing the information of all recipients, named <code>Data.xlsx</code>. For example:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Date</th>
+<th>Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alpha</td>
+<td>01/02/2016</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>Beta</td>
+<td>08/11/2016</td>
+<td>4000</td>
+</tr>
+<tr>
+<td>Gamma</td>
+<td>09/04/2016</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Theta</td>
+<td>28/08/2016</td>
+<td>6000</td>
+</tr>
+</tbody>
+</table>
+<h2>VBA code</h2>
+<p>Open the <code>template.docx</code> document, great Macro, the code is as following:</p>
+<div class="highlight"><pre><span></span>Sub Generator()  
+&#39;  
+&#39; Generator Macro  
+&#39;  
+&#39; Open Data.xlsx file  
+    Dim MyFile As Object
+    Set MyFile = CreateObject(&quot;Scripting.FileSystemObject&quot;)  
+    Dim FilePath As String  
+    FilePath = ActiveDocument.Path &amp; &quot;\Data.xlsx&quot;
+   &#39; If Data.xlsx file does not exist  
+    If Not MyFile.FileExists(FilePath) = True Then  
+     &#39; Exit  
+      MsgBox &quot;Cannot find file: Data.xlsx&quot;, Title:=&quot;Error&quot;  
+      Exit Sub  
+    End If
+   &#39; Read Data.xlsx file  
+    Dim ExcelObject As Object  
+    Set ExcelObject = GetObject(FilePath)  
+     Set Table = ExcelObject.Sheets(1).UsedRange()  
+     Dim condition As String
+   &#39;convertpdf  
+     Dim desktoploc As String  
+     Dim Docfilename As String  
+     Dim pdfpath As String
+   &#39; Loop  
+      Dim imagePath As String
+    For i = 2 To Table.Rows.Count  
+     &#39; Clear all Variables  
+         For Each Var In ActiveDocument.Variables  
+         Var.Delete  
+       Next
+     &#39; Variable: Name£¨The value is in Data.xlsx row i column 1  
+        ActiveDocument.Variables.Add Name:=&quot;Name&quot;, Value:=Table.Cells(i, 1).Text
+     &#39; Variable: Number£¨The value is in Data.xlsx row i column 3  
+        ActiveDocument.Variables.Add Name:=&quot;Number&quot;, Value:=Table.Cells(i, 3).Text
+     &#39; Variable: Date£¨The value is in Data.xlsx row i column 2  
+        ActiveDocument.Variables.Add Name:=&quot;Date&quot;, Value:=Table.Cells(i, 2).Text
+     &#39;add text based on conditions  
+         condition = Table.Cells(i, 4).Text  
+         Select Case condition  
+          Case Is = &quot;1&quot;  
+            ActiveDocument.Variables.Add Name:=&quot;condition&quot;, Value:=&quot;Text &quot; &amp; &quot;for  condition 1&quot;  
+          Case Is = &quot;2&quot;  
+            ActiveDocument.Variables.Add Name:=&quot;condition&quot;, Value:=&quot;Text for condition 2&quot;  
+          Case Is = &quot;3&quot;  
+            ActiveDocument.Variables.Add Name:=&quot;condition&quot;, Value:=&quot;Text for condition 3&quot;  
+         End Select
+      &#39; insert the images   
+          If i &lt;&gt; 2 Then  
+             Selection.GoTo What:=wdGoToBookmark, Name:=&quot;photobm&quot;  
+             Selection.Delete  
+          End If
+             Selection.GoTo What:=wdGoToBookmark, Name:=&quot;photobm&quot;  
+             Selection.InlineShapes.AddPicture filename:= _  
+             &quot;C:\Users\Administrator\Desktop\test\&quot; &amp; Table.Cells(i, 4).Text &amp; &quot;.png&quot;, LinkToFile:=False, _  
+             SaveWithDocument:=True
+      &#39; Update Word file  
+          ActiveDocument.Fields.Update
+      &#39; set the saving path  
+          ChangeFileOpenDirectory ActiveDocument.Path
+      &#39; save the file, file name£∫Name.docx  
+          ActiveDocument.SaveAs2 filename:=Table.Cells(i, 1).Text &amp; &quot;_&quot; &amp; Table.Cells(i, 3).Text &amp; &quot;_Offer_letter&quot; &amp; &quot;.docx&quot;, FileFormat:=wdFormatXMLDocument, LockComments:=False, Password:=&quot;&quot;, AddToRecentFiles:=True, WritePassword:=&quot;&quot;, ReadOnlyRecommended:=False, EmbedTrueTypeFonts:=False, SaveNativePictureFormat:=False, SaveFormsData:=False, SaveAsAOCELetter:=False, CompatibilityMode:=15
+
+       &#39; generate pdf  
+        Docfilename = Table.Cells(i, 1).Text &amp; &quot;_&quot; &amp; Table.Cells(i, 3).Text &amp; &quot;_Offer_letter&quot;  
+        pdfpath = ActiveDocument.Path &amp; &quot;\&quot; &amp; filename &amp; &quot;.pdf&quot;  
+        ActiveDocument.ExportAsFixedFormat OutputFileName:= mypath, ExportFormat:=wdExportFormatPDF, OpenAfterExport:=True, OptimizeFor:= wdExportOptimizeForPrint, Range:=wdExportAllDocument, From:=1, To:=1, Item:=wdExportDocumentContent, IncludeDocProps:=True, KeepIRM:=True, CreateBookmarks:=wdExportCreateNoBookmarks, DocStructureTags:=True, BitmapMissingFonts:=True, UseISO19005_1:=False
+
+    Next
+
+End Sub
+</pre></div>
+
+
+<p>Before we run the above Macro, we need to create doc variable in the template document at the position where we want to insert data from the Excel worksheet. <br />
+Put the curser at the desired position and press <code>Ctrl+F9</code>, it should appear like this</p>
+<div class="highlight"><pre><span></span>Date: { }
+Dear: { }
+</pre></div>
+
+
+<p>Then type in the curly brakets with <code>{ DOCVARIABLE Name }</code>or any variable name we need.</p>
+<div class="highlight"><pre><span></span>Date: { DOCVARIABLE Date }
+Dear: { DOCVARIABLE Name }
+</pre></div>
+
+
+<p>In order to determine the position of inserting the images, we need a bookmark. Go to the position requires the image, click <code>insert</code> button then select <code>bookmark</code>, name the bookmark as "photobm", or whatever other names. </p>
+<p><img alt="photobm" src="/Users/jiayu/myWeb/images/photobm.png" title="=250x" /></p>
+<p><strong>Note:</strong> the image name should be the same as the corresponding conditions in Excel</p>
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2016-05-13T21:07:00+08:00">May 13, 2016</time>
+
+<h4>Last Updated</h4>
+<time datetime="2016-05-13T21:07:00+08:00">May 13, 2016</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#vba-ref">VBA</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#vba-ref">VBA
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My https://www.facebook.com/ Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-https://www.facebook.com/ sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
